@@ -5,6 +5,8 @@ import 'package:rnsit_college_app/screens/loading.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
 import 'package:rnsit_college_app/widgets/hyperlink.dart';
+import 'package:rnsit_college_app/widgets/password_text_field_form.dart';
+import 'package:rnsit_college_app/widgets/user_name_text_field_form.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -72,14 +74,7 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text(
-              loginType[index]["type"] + " Login",
-              style: const TextStyle(
-                  color: Color.fromRGBO(102, 0, 204, 1),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline),
-            ),
+            FormHeader(loginType: loginType, index: index),
             const SizedBox(height: 20),
             Container(
               width: 70,
@@ -99,45 +94,12 @@ class _LoginFormState extends State<LoginForm> {
                   )),
             ),
             const SizedBox(height: 20),
-            Container(
-              key: _usernameKey,
-              margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: TextFormField(
-                  decoration: InputDecoration(
-                    fillColor: Colors.blue,
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue, width: 1),
-                    ),
-                    labelText: loginType[index]["labelText"],
-                    hintText: "Enter " + loginType[index]["labelText"],
-                    suffixIcon: const Icon(Icons.perm_identity),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return ("Please enter " + loginType[index]["labelText"]);
-                    }
-                  }),
-            ),
+            UserNameTextFieldForm(
+                loginType[index]["labelText"],
+                "Enter the " + loginType[index]["labelText"],
+                "Please enter your " + loginType[index]["labelText"]),
             const SizedBox(height: 20),
-            Container(
-              margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    fillColor: Colors.blue,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue, width: 1),
-                    ),
-                    labelText: "Password",
-                    hintText: "Enter Password",
-                    suffixIcon: Icon(Icons.lock_outline_rounded),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Please enter Password";
-                    }
-                  }),
-            ),
+            PasswordTextFieldForm(),
             const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: submitButtonStatus != "Submit"
@@ -147,7 +109,7 @@ class _LoginFormState extends State<LoginForm> {
                           // ignore: deprecated_member_use
                           Scaffold.of(context).showSnackBar(const SnackBar(
                               content: Text("Login Successful")));
-                          getData("USN", "Password");
+                          this.getData("USN", "Password");
                         }
                       },
                 child: Text(submitButtonStatus)),
@@ -179,5 +141,28 @@ class _LoginFormState extends State<LoginForm> {
     setState(() {
       this.index = index;
     });
+  }
+}
+
+class FormHeader extends StatelessWidget {
+  const FormHeader({
+    Key? key,
+    required this.loginType,
+    required this.index,
+  }) : super(key: key);
+
+  final List<Map> loginType;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      loginType[index]["type"] + " Login",
+      style: const TextStyle(
+          color: Color.fromRGBO(102, 0, 204, 1),
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          decoration: TextDecoration.underline),
+    );
   }
 }
