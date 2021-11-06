@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:rnsit_college_app/screens/loading.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:rnsit_college_app/screens/student_home.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
 import 'package:rnsit_college_app/widgets/hyperlink.dart';
 import 'package:rnsit_college_app/widgets/password_text_field_form.dart';
@@ -38,15 +39,13 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  String submitButtonStatus = "Submit";
-
   getData(String usn, String password) async {
-    setState(() {
-      submitButtonStatus = "Loading";
-    });
-    await Future.delayed(const Duration(seconds: 5));
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => Loading()));
+        .push(MaterialPageRoute(builder: (context) => Loading()));
+    await Future.delayed(const Duration(seconds: 5));
+    Navigator.pop(context);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => StudentHomePage()));
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -119,26 +118,22 @@ class _LoginFormState extends State<LoginForm> {
             PasswordTextFieldForm(),
             const SizedBox(height: 20),
             ElevatedButton(
-                onPressed: submitButtonStatus != "Submit"
-                    ? null
-                    : () {
-                        if (_formKey.currentState!.validate()) {
-                          // ignore: deprecated_member_use
-                          Scaffold.of(context).showSnackBar(const SnackBar(
-                              content: Text("Login Successful")));
-                          this.getData("USN", "Password");
-                        }
-                      },
-                child: Text(submitButtonStatus)),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // ignore: deprecated_member_use
+                    Scaffold.of(context).showSnackBar(
+                        const SnackBar(content: Text("Login Successful")));
+                    this.getData("USN", "Password");
+                  }
+                },
+                child: Text("Submit")),
             const SizedBox(height: 20),
             Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  HyperlinkText("Signup", submitButtonStatus == "Submit",
-                      const Loading()),
-                  HyperlinkText("Forgot Password",
-                      submitButtonStatus == "Submit", const Loading()),
+                  HyperlinkText("Signup", true, const Loading()),
+                  HyperlinkText("Forgot Password", true, const Loading()),
                 ]),
             const SizedBox(height: 20),
           ],
