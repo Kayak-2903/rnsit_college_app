@@ -50,7 +50,6 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   final _formKey = GlobalKey<FormState>();
-  final _usernameKey = GlobalKey();
 
   List<Map> loginType = [
     {
@@ -67,6 +66,8 @@ class _LoginFormState extends State<LoginForm> {
 
   int index = 0;
 
+  final controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -76,22 +77,38 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 20),
             FormHeader(loginType: loginType, index: index),
             const SizedBox(height: 20),
-            Container(
-              width: 70,
-              height: 70,
-              child: CarouselSlider.builder(
-                  itemCount: 2,
-                  itemBuilder: (context, index, realIndex) {
-                    final imageUrl = loginType[index]["logo"];
-                    this.index = index;
-                    return buildLoginImage(imageUrl, index);
-                  },
-                  options: CarouselOptions(
-                    onPageChanged: (index, reason) {
-                      changeLabel(index);
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      controller.previousPage();
                     },
-                    viewportFraction: 1,
-                  )),
+                    icon: Icon(Icons.arrow_left_outlined)),
+                Container(
+                  width: 70,
+                  height: 70,
+                  child: CarouselSlider.builder(
+                      carouselController: controller,
+                      itemCount: 2,
+                      itemBuilder: (context, index, realIndex) {
+                        final imageUrl = loginType[index]["logo"];
+                        this.index = index;
+                        return buildLoginImage(imageUrl, index);
+                      },
+                      options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          changeLabel(index);
+                        },
+                        viewportFraction: 1,
+                      )),
+                ),
+                IconButton(
+                    onPressed: () {
+                      controller.nextPage();
+                    },
+                    icon: Icon(Icons.arrow_right_outlined)),
+              ],
             ),
             const SizedBox(height: 20),
             UserNameTextFieldForm(
