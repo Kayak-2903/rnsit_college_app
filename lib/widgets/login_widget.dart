@@ -1,9 +1,12 @@
+// ignore_for_file: unnecessary_cast, prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:rnsit_college_app/screens/loading.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:rnsit_college_app/screens/student_home.dart';
+import 'package:rnsit_college_app/service/authorization.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
 import 'package:rnsit_college_app/widgets/hyperlink.dart';
 import 'package:rnsit_college_app/widgets/password_text_field_form.dart';
@@ -39,15 +42,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  getData(String usn, String password) async {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Loading()));
-    await Future.delayed(const Duration(seconds: 5));
-    Navigator.pop(context);
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => StudentHomePage()));
-  }
-
   final _formKey = GlobalKey<FormState>();
 
   List<Map> loginType = [
@@ -66,6 +60,8 @@ class _LoginFormState extends State<LoginForm> {
   int index = 0;
 
   final controller = CarouselController();
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                       controller.previousPage();
                     },
                     icon: Icon(Icons.arrow_left_outlined)),
-                Container(
+                SizedBox(
                   width: 70,
                   height: 70,
                   child: CarouselSlider.builder(
@@ -111,19 +107,33 @@ class _LoginFormState extends State<LoginForm> {
             ),
             const SizedBox(height: 20),
             UserNameTextFieldForm(
+                userNameController,
+                loginType[index]["type"],
                 loginType[index]["labelText"],
                 "Enter the " + loginType[index]["labelText"],
                 "Please enter your " + loginType[index]["labelText"]),
             const SizedBox(height: 20),
-            PasswordTextFieldForm(),
+            PasswordTextFieldForm(passwordController),
             const SizedBox(height: 20),
             ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     // ignore: deprecated_member_use
                     Scaffold.of(context).showSnackBar(
                         const SnackBar(content: Text("Login Successful")));
-                    this.getData("USN", "Password");
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Loading()));
+                    bool authorized = await Authorization().checkAuthorization(
+                        loginType[index]["type"],
+                        userNameController.text,
+                        passwordController.text) as bool;
+                    Navigator.pop(context);
+                    if (authorized) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StudentHomePage()));
+                    }
                   }
                 },
                 child: Text("Submit")),
@@ -132,8 +142,8 @@ class _LoginFormState extends State<LoginForm> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  HyperlinkText("Signup", true, const Loading()),
-                  HyperlinkText("Forgot Password", true, const Loading()),
+                  HyperlinkText("Signup", true, Loading()),
+                  HyperlinkText("Forgot Password", true, Loading()),
                 ]),
             const SizedBox(height: 20),
           ],
