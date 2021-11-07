@@ -34,7 +34,6 @@ class _HyperlinkTextState extends State<HyperlinkText> {
                     }
                   : null,
             style: const TextStyle(
-                color: ThemeColor.color,
-                decoration: TextDecoration.underline)));
+                color: kThemeColor, decoration: TextDecoration.underline)));
   }
 }

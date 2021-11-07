@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:rnsit_college_app/values/string_constants.dart';
 import 'package:rnsit_college_app/values/theme.dart';
 
 class Loading extends StatefulWidget {
@@ -21,9 +20,8 @@ class _LoadingState extends State<Loading> {
             color: Colors.white,
           )
         : widget.loadingSymbol;
-    Color? backgroundColor = widget.backgroundColor == null
-        ? ThemeColor.color
-        : widget.backgroundColor;
+    Color? backgroundColor =
+        widget.backgroundColor == null ? kThemeColor : widget.backgroundColor;
     String? logoImage = widget.logoImage;
     return Container(
         decoration: BoxDecoration(

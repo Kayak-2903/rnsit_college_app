@@ -54,7 +54,7 @@ class StudentSubjectAttendanceList {
     var headers = {HttpHeaders.contentTypeHeader: "application/json"};
     try {
       response = await http.get(
-        Uri.parse(BackendDataFetchPaths.getSubjectList + "?" + queryParams),
+        Uri.parse(kGetSubjectList + "?" + queryParams),
         headers: headers,
       );
     } catch (exception) {
@@ -64,3 +64,13 @@ class StudentSubjectAttendanceList {
     return jsonDecode((response as Response).body);
   }
 }
+// putRemoveLike(String postId, String id) async {
+//     final queryParameters = {'Id': postId, 'userId': id};
+//     final uri = Uri.https(patch, 'post/like/', queryParameters);
+//     final response = await http.put(uri);
+//     if (response.statusCode == 200) {
+//       final response_data = jsonDecode(response.body);
+//     } else {
+//       print(response.reasonPhrase);
+//     }
+//   }

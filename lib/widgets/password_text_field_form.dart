@@ -20,9 +20,9 @@ class PasswordTextFieldForm extends StatelessWidget {
           controller: passwordController,
           obscureText: true,
           decoration: const InputDecoration(
-            fillColor: ThemeColor.color,
+            fillColor: kThemeColor,
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: ThemeColor.color, width: 1),
+              borderSide: BorderSide(color: kThemeColor, width: 1),
             ),
             labelText: "Password",
             hintText: "Enter Password",

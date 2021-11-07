@@ -25,8 +25,8 @@ class Authorization {
     try {
       response = await get(
           Uri.parse(((loginType == "Student"
-                  ? BackendDataFetchPaths.checkAuthorizationStudent
-                  : BackendDataFetchPaths.checkAuthorizationTeacher) +
+                  ? kCheckAuthorizationStudent
+                  : kCheckAuthorizationTeacher) +
               "?" +
               queryString)),
           headers: headers);

@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
                 decoration: const BoxDecoration(shape: BoxShape.circle),
                 margin: const EdgeInsets.only(bottom: 30, top: 30),
                 child: Image.asset(
-                  ImagePaths.logosCollegeLogo,
+                  kLogosCollegeLogo,
                   width: MediaQuery.of(context).size.width * .50,
                   height: MediaQuery.of(context).size.width * .50,
                   alignment: Alignment.center,

@@ -25,9 +25,9 @@ class UserNameTextFieldForm extends StatelessWidget {
           textInputAction: textInputAction,
           controller: userNameController,
           decoration: InputDecoration(
-            fillColor: ThemeColor.color,
+            fillColor: kThemeColor,
             enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: ThemeColor.color, width: 1),
+              borderSide: BorderSide(color: kThemeColor, width: 1),
             ),
             labelText: labelText,
             hintText: hintText,

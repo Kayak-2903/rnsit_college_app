@@ -22,13 +22,13 @@ class _StudentSubjectListState extends State<StudentSubjectList> {
     // TODO: implement initState
     super.initState();
     studentData = widget.studentData;
+    setState(() {
+      loading = true;
+    });
     getStudentSubjectList();
   }
 
   getStudentSubjectList() async {
-    setState(() {
-      loading = true;
-    });
     studentSubjectList =
         await StudentSubjectAttendanceList.getAttendanceList(studentData);
     setState(() {
@@ -41,7 +41,7 @@ class _StudentSubjectListState extends State<StudentSubjectList> {
     return loading
         ? Loading(
             backgroundColor: Colors.transparent,
-            loadingSymbol: SpinKitCircle(color: ThemeColor.color),
+            loadingSymbol: SpinKitCircle(color: kThemeColor),
           )
         : Flexible(
             child: ListViewOfSubjects(studentSubjectList: studentSubjectList));

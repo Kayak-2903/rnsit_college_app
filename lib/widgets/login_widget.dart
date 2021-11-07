@@ -28,7 +28,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             MediaQuery.of(context).size.width * .1, 0),
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: ThemeColor.color, width: 3.5),
+            border: Border.all(color: kThemeColor, width: 3.5),
             borderRadius: BorderRadius.circular(10)),
         child: const LoginForm());
   }
@@ -45,16 +45,8 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
   List<Map> loginType = [
-    {
-      "type": "Student",
-      "logo": ImagePaths.logosStudentLogo,
-      "labelText": "USN"
-    },
-    {
-      "type": "Teacher",
-      "logo": ImagePaths.logosTeacherLogo,
-      "labelText": "Email"
-    }
+    {"type": "Student", "logo": kLogosStudentLogo, "labelText": "USN"},
+    {"type": "Teacher", "logo": kLogosTeacherLogo, "labelText": "Email"}
   ];
 
   int index = 0;
@@ -117,8 +109,7 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 20),
             ElevatedButton(
                 style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(ThemeColor.color)),
+                    backgroundColor: MaterialStateProperty.all(kThemeColor)),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     // ignore: deprecated_member_use
@@ -185,7 +176,7 @@ class FormHeader extends StatelessWidget {
     return Text(
       loginType[index]["type"] + " Login",
       style: const TextStyle(
-          color: ThemeColor.color,
+          color: kThemeColor,
           fontSize: 24,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline),
