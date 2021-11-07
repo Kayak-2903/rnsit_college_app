@@ -8,6 +8,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:rnsit_college_app/screens/student_home_page.dart';
 import 'package:rnsit_college_app/service/authorization.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
+import 'package:rnsit_college_app/values/theme.dart';
 import 'package:rnsit_college_app/widgets/hyperlink.dart';
 import 'package:rnsit_college_app/widgets/password_text_field_form.dart';
 import 'package:rnsit_college_app/widgets/user_name_text_field_form.dart';
@@ -27,8 +28,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             MediaQuery.of(context).size.width * .1, 0),
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(
-                color: const Color.fromRGBO(48, 64, 171, 1), width: 3.5),
+            border: Border.all(color: ThemeColor.color, width: 3.5),
             borderRadius: BorderRadius.circular(10)),
         child: const LoginForm());
   }
@@ -116,6 +116,9 @@ class _LoginFormState extends State<LoginForm> {
             PasswordTextFieldForm(TextInputAction.next, passwordController),
             const SizedBox(height: 20),
             ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(ThemeColor.color)),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     // ignore: deprecated_member_use
@@ -182,7 +185,7 @@ class FormHeader extends StatelessWidget {
     return Text(
       loginType[index]["type"] + " Login",
       style: const TextStyle(
-          color: Color.fromRGBO(102, 0, 204, 1),
+          color: ThemeColor.color,
           fontSize: 24,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline),

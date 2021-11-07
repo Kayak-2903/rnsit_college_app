@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:rnsit_college_app/values/theme.dart';
 
 class HyperlinkText extends StatefulWidget {
   final String text;
@@ -33,6 +34,7 @@ class _HyperlinkTextState extends State<HyperlinkText> {
                     }
                   : null,
             style: const TextStyle(
-                color: Colors.blue, decoration: TextDecoration.underline)));
+                color: ThemeColor.color,
+                decoration: TextDecoration.underline)));
   }
 }

@@ -11,8 +11,18 @@ class StudentData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Color.fromRGBO(229, 228, 226, 1),
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: Offset(0, 7))
+          ],
+          color: Color.fromRGBO(240, 250, 255, 1),
+          borderRadius: BorderRadius.circular(15)),
       alignment: Alignment.center,
       child: Column(
         children: [

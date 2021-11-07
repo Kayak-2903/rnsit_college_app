@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnsit_college_app/values/theme.dart';
 
 class UserNameTextFieldForm extends StatelessWidget {
   UserNameTextFieldForm(
@@ -6,7 +7,7 @@ class UserNameTextFieldForm extends StatelessWidget {
     this.userNameController,
     this.labelText,
     this.hintText,
-    this.errorText,{
+    this.errorText, {
     Key? key,
   }) : super(key: key);
 
@@ -24,9 +25,9 @@ class UserNameTextFieldForm extends StatelessWidget {
           textInputAction: textInputAction,
           controller: userNameController,
           decoration: InputDecoration(
-            fillColor: Colors.blue,
+            fillColor: ThemeColor.color,
             enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue, width: 1),
+              borderSide: BorderSide(color: ThemeColor.color, width: 1),
             ),
             labelText: labelText,
             hintText: hintText,

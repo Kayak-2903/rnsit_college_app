@@ -14,13 +14,13 @@ class StudentHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Color.fromRGBO(21, 27, 84, 1),
           title: Text("Student Profile"),
           centerTitle: true,
           toolbarHeight: 70,
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.settings))
+            IconButton(onPressed: () {}, icon: Icon(Icons.refresh))
           ],
           leading: IconButton(
             onPressed: () {},

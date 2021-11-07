@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rnsit_college_app/screens/loading.dart';
 import 'package:rnsit_college_app/service/student_subjects_attendance_list.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
+import 'package:rnsit_college_app/values/theme.dart';
 
 class StudentSubjectList extends StatefulWidget {
   Map studentData;
@@ -40,7 +41,7 @@ class _StudentSubjectListState extends State<StudentSubjectList> {
     return loading
         ? Loading(
             backgroundColor: Colors.transparent,
-            loadingSymbol: SpinKitCircle(color: Colors.blue),
+            loadingSymbol: SpinKitCircle(color: ThemeColor.color),
           )
         : Flexible(
             child: ListViewOfSubjects(studentSubjectList: studentSubjectList));
@@ -60,10 +61,8 @@ class ListViewOfSubjects extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: Colors.black,
-          )),
+        color: Colors.white,
+      ),
       child: Scrollbar(
         thickness: 5,
         isAlwaysShown: true,
@@ -86,9 +85,10 @@ class ListViewOfSubjects extends StatelessWidget {
               }
               return Card(
                   elevation: 6,
-                  shape: RoundedRectangleBorder(),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                   shadowColor: Colors.black,
-                  color: Color.fromRGBO(143, 242, 255, 1),
+                  color: Color.fromRGBO(235, 244, 250, 1),
                   child: ListTile(
                       leading: Container(
                         color: color,

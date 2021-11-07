@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnsit_college_app/values/theme.dart';
 
 class PasswordTextFieldForm extends StatelessWidget {
   PasswordTextFieldForm(
@@ -19,9 +20,9 @@ class PasswordTextFieldForm extends StatelessWidget {
           controller: passwordController,
           obscureText: true,
           decoration: const InputDecoration(
-            fillColor: Colors.blue,
+            fillColor: ThemeColor.color,
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue, width: 1),
+              borderSide: BorderSide(color: ThemeColor.color, width: 1),
             ),
             labelText: "Password",
             hintText: "Enter Password",
