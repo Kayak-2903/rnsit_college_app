@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rnsit_college_app/screens/loading.dart';
 import 'package:rnsit_college_app/service/student_subjects_attendance_list.dart';
-import 'package:rnsit_college_app/values/string_constants.dart';
 import 'package:rnsit_college_app/values/theme.dart';
 
 class StudentSubjectList extends StatefulWidget {
@@ -102,7 +101,7 @@ class ListViewOfSubjects extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: Text(
                               studentSubject["subjectName"],
-                              style: TextStyle(fontSize: 25, color: textColor),
+                              style: TextStyle(fontSize: 18, color: textColor),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -110,7 +109,7 @@ class ListViewOfSubjects extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: Text(studentSubject["subjectCode"],
                                 style:
-                                    TextStyle(fontSize: 20, color: textColor),
+                                    TextStyle(fontSize: 15, color: textColor),
                                 textAlign: TextAlign.center),
                           ),
                         ],
