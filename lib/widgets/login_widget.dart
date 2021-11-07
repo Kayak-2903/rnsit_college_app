@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:rnsit_college_app/screens/loading.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:rnsit_college_app/screens/student_home.dart';
+import 'package:rnsit_college_app/screens/student_home_page.dart';
 import 'package:rnsit_college_app/service/authorization.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
 import 'package:rnsit_college_app/widgets/hyperlink.dart';
@@ -107,13 +107,13 @@ class _LoginFormState extends State<LoginForm> {
             ),
             const SizedBox(height: 20),
             UserNameTextFieldForm(
+                TextInputAction.next,
                 userNameController,
-                loginType[index]["type"],
                 loginType[index]["labelText"],
                 "Enter the " + loginType[index]["labelText"],
                 "Please enter your " + loginType[index]["labelText"]),
             const SizedBox(height: 20),
-            PasswordTextFieldForm(passwordController),
+            PasswordTextFieldForm(TextInputAction.next, passwordController),
             const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () async {
@@ -123,16 +123,17 @@ class _LoginFormState extends State<LoginForm> {
                         const SnackBar(content: Text("Login Successful")));
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Loading()));
-                    bool authorized = await Authorization().checkAuthorization(
+                    var authorized = await Authorization().checkAuthorization(
                         loginType[index]["type"],
                         userNameController.text,
-                        passwordController.text) as bool;
+                        passwordController.text);
                     Navigator.pop(context);
-                    if (authorized) {
+                    if (authorized is! bool) {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => StudentHomePage()));
+                              builder: (context) =>
+                                  StudentHomePage(authorized)));
                     }
                   }
                 },

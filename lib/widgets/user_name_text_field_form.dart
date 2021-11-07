@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 
 class UserNameTextFieldForm extends StatelessWidget {
   UserNameTextFieldForm(
+    this.textInputAction,
     this.userNameController,
     this.labelText,
     this.hintText,
-    this.errorText,
-    this.type, {
+    this.errorText,{
     Key? key,
   }) : super(key: key);
 
+  TextInputAction textInputAction;
   TextEditingController userNameController;
   String labelText;
   String hintText;
   String errorText;
-  String type;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: TextFormField(
+          textInputAction: textInputAction,
           controller: userNameController,
           decoration: InputDecoration(
             fillColor: Colors.blue,
