@@ -45,6 +45,12 @@ class StudentSubjectAttendanceList {
           "classesAttended": "3",
           "attendancePercentage": 100
         },
+        {
+          "subjectName": "Cryptography Lab",
+          "subjectCode": "18IS077",
+          "classesAttended": "3",
+          "attendancePercentage": 100
+        },
       ]
     };
     var queryParams =

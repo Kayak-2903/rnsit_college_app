@@ -68,7 +68,7 @@ class ListViewOfSubjects extends StatelessWidget {
         controller: scrollController,
         child: ListView.builder(
             controller: scrollController,
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.all(25),
             itemCount: (studentSubjectList["subjects"] as List).length,
             itemBuilder: (BuildContext context, int index) {
               Map studentSubject = studentSubjectList["subjects"][index];
@@ -83,6 +83,7 @@ class ListViewOfSubjects extends StatelessWidget {
                 icon = Icon(Icons.dangerous, color: Colors.red, size: 30);
               }
               return Card(
+                  margin: EdgeInsets.only(bottom: 25),
                   elevation: 6,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
@@ -95,51 +96,46 @@ class ListViewOfSubjects extends StatelessWidget {
                       ),
                       dense: true,
                       title: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            alignment: Alignment.topLeft,
+                            alignment: Alignment.topCenter,
                             child: Text(
                               studentSubject["subjectName"],
-                              style: TextStyle(fontSize: 18, color: textColor),
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(studentSubject["subjectCode"],
-                                style:
-                                    TextStyle(fontSize: 15, color: textColor),
-                                textAlign: TextAlign.center),
-                          ),
-                        ],
-                      ),
-                      subtitle: Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              "Classes Attended: " +
-                                  studentSubject["classesAttended"].toString(),
                               style: TextStyle(
-                                fontSize: 10,
-                                color: textColor,
-                              ),
+                                  fontSize: 15,
+                                  color: textColor,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              "Attendance Percentage: " +
-                                  studentSubject["attendancePercentage"]
-                                      .toString() +
-                                  "%",
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: textColor,
-                              ),
-                            ),
+                          SizedBox(
+                            height: 20,
                           ),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(studentSubject["subjectCode"],
+                                      style: TextStyle(
+                                          fontSize: 12, color: textColor),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Container(
+                                  alignment: Alignment.topRight,
+                                  child: Text(
+                                    "Attendance: " +
+                                        studentSubject["attendancePercentage"]
+                                            .toString() +
+                                        "%",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: textColor,
+                                    ),
+                                  ),
+                                ),
+                              ]),
                         ],
                       ),
                       trailing: Icon(
