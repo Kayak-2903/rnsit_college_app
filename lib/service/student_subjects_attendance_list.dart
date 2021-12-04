@@ -13,42 +13,49 @@ class StudentSubjectAttendanceList {
           "subjectName": "Big Data Analysis",
           "subjectCode": "18IS071",
           "classesAttended": 12,
-          "attendancePercentage": 87
+          "classesAbsent": 2,
+          "attendancePercentage": 86
         },
         {
           "subjectName": "Artificial Intelligence and Machine Learning",
           "subjectCode": "18IS072",
           "classesAttended": 15,
-          "attendancePercentage": 77
+          "classesAbsent": 4,
+          "attendancePercentage": 79
         },
         {
           "subjectName": "User Interface Design",
           "subjectCode": "18IS073",
           "classesAttended": 21,
-          "attendancePercentage": 97
+          "classesAbsent": 1,
+          "attendancePercentage": 95
         },
         {
           "subjectName": "Energy and Environment",
           "subjectCode": "18IS074",
           "classesAttended": 10,
-          "attendancePercentage": 90
+          "classesAbsent": 1,
+          "attendancePercentage": 91
         },
         {
           "subjectName": "Cryptography",
           "subjectCode": "18IS075",
           "classesAttended": 10,
-          "attendancePercentage": 85
+          "classesAbsent": 2,
+          "attendancePercentage": 83
         },
         {
           "subjectName": "Artificial Intelligence and Machine Learning Lab",
           "subjectCode": "18IS076",
-          "classesAttended": "3",
+          "classesAttended": 3,
+          "classesAbsent": 0,
           "attendancePercentage": 100
         },
         {
           "subjectName": "Cryptography Lab",
           "subjectCode": "18IS077",
-          "classesAttended": "3",
+          "classesAttended": 3,
+          "classesAbsent": 4,
           "attendancePercentage": 100
         },
       ]
