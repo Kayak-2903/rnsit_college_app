@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rnsit_college_app/screens/loading.dart';
+import 'package:rnsit_college_app/screens/student_attendance_page.dart';
 import 'package:rnsit_college_app/service/student_subjects_attendance_list.dart';
 import 'package:rnsit_college_app/values/theme.dart';
 
@@ -43,16 +44,19 @@ class _StudentSubjectListState extends State<StudentSubjectList> {
             loadingSymbol: SpinKitCircle(color: kThemeColor),
           )
         : Flexible(
-            child: ListViewOfSubjects(studentSubjectList: studentSubjectList));
+            child: ListViewOfSubjects(
+            studentSubjectList: studentSubjectList,
+            studentData: studentData,
+          ));
   }
 }
 
 class ListViewOfSubjects extends StatelessWidget {
   Map studentSubjectList;
-  ListViewOfSubjects({
-    Key? key,
-    required this.studentSubjectList,
-  }) : super(key: key);
+  Map studentData;
+  ListViewOfSubjects(
+      {Key? key, required this.studentSubjectList, required this.studentData})
+      : super(key: key);
 
   final ScrollController scrollController = ScrollController();
 
@@ -90,6 +94,16 @@ class ListViewOfSubjects extends StatelessWidget {
                   shadowColor: Colors.black,
                   color: Color.fromRGBO(235, 244, 250, 1),
                   child: ListTile(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => StudentAttendancePage(
+                                      studentData: studentData,
+                                      subjectData:
+                                          studentSubjectList["subjects"][index],
+                                    )));
+                      },
                       leading: Container(
                         color: color,
                         child: icon,

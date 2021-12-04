@@ -39,16 +39,22 @@ class StudentData extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 alignment: Alignment.center,
                 child: Text(
                   studentData["fullName"],
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                  ),
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,7 +100,7 @@ class StudentData extends StatelessWidget {
           indent: 25,
           endIndent: 25,
           color: Colors.grey,
-          thickness: 2,
+          thickness: 1,
         )
       ],
     );

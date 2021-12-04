@@ -25,13 +25,20 @@ class UserNameTextFieldForm extends StatelessWidget {
           textInputAction: textInputAction,
           controller: userNameController,
           decoration: InputDecoration(
-            fillColor: kThemeColor,
+            filled: true,
+            fillColor: kContentThemeColor,
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: kThemeColor, width: 1),
             ),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: kThemeColor, width: 1)),
             labelText: labelText,
             hintText: hintText,
-            suffixIcon: const Icon(Icons.perm_identity),
+            labelStyle: TextStyle(color: kThemeColor),
+            suffixIcon: const Icon(
+              Icons.perm_identity,
+              color: kThemeColor,
+            ),
           ),
           validator: (value) {
             if (value!.isEmpty) {

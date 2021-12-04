@@ -145,12 +145,9 @@ class _LoginFormState extends State<LoginForm> {
         ));
   }
 
-  Widget buildLoginImage(String urlImage, int index) => Container(
-        color: Colors.grey,
-        child: Image.asset(
-          urlImage,
-          fit: BoxFit.cover,
-        ),
+  Widget buildLoginImage(var urlImage, int index) => Container(
+        color: kContentThemeColor,
+        child: urlImage,
         width: 70,
         height: 70,
       );
