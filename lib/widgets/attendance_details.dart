@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rnsit_college_app/values/theme.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class AttendanceDetails extends StatefulWidget {
   Map studentData;
@@ -46,9 +48,37 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  var calendarView = CalendarView.month;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      height: 400,
+      padding: EdgeInsets.only(left: 25, right: 25),
+      child: SfCalendar(
+        backgroundColor: kContentThemeColor,
+        cellBorderColor: Colors.transparent,
+        headerHeight: 50,
+        viewHeaderHeight: 50,
+        viewHeaderStyle: ViewHeaderStyle(
+            dayTextStyle: TextStyle(fontSize: 17, color: kThemeColor)),
+        headerStyle: CalendarHeaderStyle(
+            textAlign: TextAlign.center,
+            backgroundColor: kThemeColor,
+            textStyle: TextStyle(color: kContentThemeColor, fontSize: 20)),
+        showDatePickerButton: true,
+        viewNavigationMode: ViewNavigationMode.snap,
+        showNavigationArrow: true,
+        view: calendarView,
+        initialDisplayDate: DateTime.now(),
+        monthViewSettings: MonthViewSettings(
+            monthCellStyle: MonthCellStyle(
+                backgroundColor: kContentThemeColor,
+                todayBackgroundColor: kContentThemeColor),
+            showAgenda: true,
+            agendaViewHeight: 50,
+            agendaStyle: AgendaStyle(backgroundColor: Colors.yellow)),
+      ),
+    );
   }
 }
 
@@ -194,3 +224,43 @@ class Header extends StatelessWidget {
     );
   }
 }
+// TableCalendar(
+//           focusedDay: focusedDate,
+//           headerStyle: HeaderStyle(
+//             headerMargin: EdgeInsets.only(bottom: 5),
+//             leftChevronIcon: Icon(
+//               Icons.chevron_left_outlined,
+//               color: kContentThemeColor,
+//             ),
+//             rightChevronIcon: Icon(
+//               Icons.chevron_right_outlined,
+//               color: kContentThemeColor,
+//             ),
+//             titleCentered: true,
+//             formatButtonVisible: false,
+//             decoration: BoxDecoration(
+//                 color: kThemeColor, borderRadius: BorderRadius.circular(25)),
+//             titleTextStyle: TextStyle(color: kContentThemeColor),
+//           ),
+//           rangeSelectionMode: RangeSelectionMode.enforced,
+//           daysOfWeekHeight: 25,
+//           daysOfWeekStyle: DaysOfWeekStyle(
+//               weekendStyle: TextStyle(fontSize: 15),
+//               weekdayStyle: TextStyle(fontSize: 15),
+//               decoration: BoxDecoration(
+//                   border: Border.all(
+//                     color: kThemeColor,
+//                   ),
+//                   borderRadius: BorderRadius.circular(25))),
+//           calendarStyle: CalendarStyle(
+//               rowDecoration: BoxDecoration(color: kContentThemeColor),
+//               selectedDecoration:
+//                   BoxDecoration(color: Colors.blue, shape: BoxShape.circle)),
+//           firstDay: DateTime.utc(2010),
+//           lastDay: DateTime.utc(2030),
+//           calendarFormat: CalendarFormat.month,
+//           selectedDayPredicate: (day) => isSameDay(day, selectedDate),
+//           onDaySelected: (selectedDay, focusedDay) => setState(() {
+//                 selectedDate = selectedDay;
+//                 focusedDate = focusedDay;
+//               }))
