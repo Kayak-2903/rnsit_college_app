@@ -52,7 +52,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 300,
       padding: EdgeInsets.only(left: 25, right: 25),
       child: SfCalendar(
         backgroundColor: kContentThemeColor,
@@ -71,12 +71,10 @@ class _CalendarState extends State<Calendar> {
         view: calendarView,
         initialDisplayDate: DateTime.now(),
         monthViewSettings: MonthViewSettings(
-            monthCellStyle: MonthCellStyle(
-                backgroundColor: kContentThemeColor,
-                todayBackgroundColor: kContentThemeColor),
-            showAgenda: true,
-            agendaViewHeight: 50,
-            agendaStyle: AgendaStyle(backgroundColor: Colors.yellow)),
+          monthCellStyle: MonthCellStyle(
+              backgroundColor: kContentThemeColor,
+              todayBackgroundColor: kContentThemeColor),
+        ),
       ),
     );
   }
