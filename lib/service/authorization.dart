@@ -3,9 +3,10 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:rnsit_college_app/values/string_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Authorization {
-  checkAuthorization(String loginType, String username, String password) async {
+  checkAuthorization(var loginType, var username, var password) async {
     Map studentData = {
       "fullName": "Kayak V Gornale",
       "usn": "1RN18IS060",
@@ -34,6 +35,10 @@ class Authorization {
       response = defaultResponse;
       print(exception);
     }
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("loginType", loginType);
+    preferences.setString("username", username);
+    preferences.setString("password", password);
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     }
