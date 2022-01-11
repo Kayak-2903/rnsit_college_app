@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rnsit_college_app/screens/student_home_page.dart';
 import 'package:rnsit_college_app/values/theme.dart';
 import 'package:rnsit_college_app/widgets/logout_widget.dart';
 
 class SideDrawer extends StatelessWidget {
-  const SideDrawer({Key? key}) : super(key: key);
+  Map studentData;
+  SideDrawer(this.studentData, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +33,15 @@ class SideDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
-              onTap: () => {},
-            ),
-            ListTile(
-              leading: Icon(Icons.border_color),
-              title: Text('Feedback'),
-              onTap: () => {Navigator.of(context).pop()},
+              onTap: () {
+                while (Navigator.canPop(context)) {
+                  Navigator.pop(context);
+                }
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => StudentHomePage(studentData)));
+              },
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app),

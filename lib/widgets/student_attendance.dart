@@ -20,7 +20,7 @@ class _StudentAttendanceState extends State<StudentAttendance> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
-        drawer: SideDrawer(),
+        drawer: SideDrawer(widget.studentData),
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(21, 27, 84, 1),
           title: Column(children: [

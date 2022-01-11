@@ -20,7 +20,7 @@ class _StudentHomeState extends State<StudentHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
-        drawer: SideDrawer(),
+        drawer: SideDrawer(widget.studentData),
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(21, 27, 84, 1),
           title: Text("Student Profile"),

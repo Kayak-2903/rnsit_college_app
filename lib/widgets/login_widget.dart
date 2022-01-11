@@ -80,7 +80,6 @@ class _LoginFormState extends State<LoginForm> {
                       itemCount: 2,
                       itemBuilder: (context, index, realIndex) {
                         final imageUrl = loginType[index]["logo"];
-                        this.index = index;
                         return buildLoginImage(imageUrl, index);
                       },
                       options: CarouselOptions(
@@ -113,8 +112,6 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     // ignore: deprecated_member_use
-                    Scaffold.of(context).showSnackBar(
-                        const SnackBar(content: Text("Login Successful")));
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Loading()));
                     var authorized = await Authorization().checkAuthorization(
@@ -123,11 +120,16 @@ class _LoginFormState extends State<LoginForm> {
                         passwordController.text);
                     Navigator.pop(context);
                     if (authorized is! bool) {
+                      Scaffold.of(context).showSnackBar(
+                          const SnackBar(content: Text("Login Successful")));
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
                                   StudentHomePage(authorized)));
+                    } else {
+                      Scaffold.of(context).showSnackBar(
+                          const SnackBar(content: Text("Login Failed")));
                     }
                   }
                 },
